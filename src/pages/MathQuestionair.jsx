@@ -8,7 +8,10 @@ import Timer from "../components/Timer"
 console.log(FractionSolver("5 2/3 - 2 1/3")) // Output: "3/8"
 export default function MathQuestionair() {
   const [state, setState] = useState(["", "", "", "", "", "", "", "", "", ""])
-  const [questions, setQuestions] = useState(FractionQuizGenerator("easy", "+"))
+  const [questions, setQuestions] = useState([])
+  const [difficulty, setDifficulty] = useState("")
+  const [operations, setOperations] = useState("")
+  const [isShowError, setIsShowError] = useState(false)
   const [isCorrect, setIsCorrect] = useState(Array(questions.length).fill(null))
 
   const answers = questions.map(item => FractionSolver(item))
@@ -33,10 +36,58 @@ export default function MathQuestionair() {
       />
     )
   }
-
+  const onGenerateQuestion = () => {
+    console.log(!difficulty)
+    if (!difficulty || !operations) {
+      setIsShowError(true)
+    } else {
+      setQuestions(FractionQuizGenerator(difficulty, operations))
+    }
+  }
+  if (questions.length == 0) {
+    return (
+      <div className="p-8 flex gap-4">
+        <select
+          className="cursor-pointer border-black border rounded-md px-2 py-1"
+          value={difficulty}
+          onChange={e => setDifficulty(e.target.value)}
+        >
+          <option value={""}> Difficulty</option>
+          <option value={"easy"}> Easy</option>
+          <option value={"medium"}> Medium</option>
+          <option value={"hard"}> Hard</option>
+        </select>
+        <select
+          className="cursor-pointer border-black border rounded-md px-2 py-1"
+          value={operations}
+          onChange={e => setOperations(e.target.value)}
+        >
+          <option value={""}> Operation</option>
+          <option value={"+"}> Adds</option>
+          <option value={"-"}> Subs</option>
+          <option value={"*"}> Mults</option>
+          <option value={"/"}> Divs</option>
+          <option value={"random"}> Rands</option>
+        </select>
+        <button
+          onClick={() => onGenerateQuestion()}
+          className="bg-slate-800 px-4 py-1 text-white hover:bg-slate-900 rounded-md"
+        >
+          Start
+        </button>
+        {isShowError && (
+          <div>
+            <span className="text-red-500 font-extrabold">Oy fuccker!</span>{" "}
+            select an opperation or dificulty if you don't wanted to be cut!,
+            you dummy!
+          </div>
+        )}
+      </div>
+    )
+  }
   return (
     <div>
-      <Timer/>
+      <Timer />
       {questions.map((item, key) => (
         <div key={key} className="flex items-center gap-5">
           <div className="p-4">
