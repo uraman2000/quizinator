@@ -1,6 +1,6 @@
 import React from "react"
 import Home from "../pages/Home"
-import SideNav from "./sideNav"
+import SideNav from "./SideNav"
 import { Outlet } from "react-router-dom"
 
 export default function Layout() {
