@@ -5,7 +5,8 @@ import FractionQuizGenerator from "../utils/FractionQuizGenerator"
 import FractionSolver from "../utils/FractionSolver"
 import Timer from "../components/Timer"
 
-console.log(FractionSolver("5 2/3 - 2 1/3")) // Output: "3/8"
+// console.log(FractionSolver("2 5/6 - 3 3/5")) // Output: "3/8"
+// console.log(FractionSolver("3 8/8 - 8 7/2 ")) // Output: "3/8"
 export default function MathQuestionair() {
   const [state, setState] = useState(["", "", "", "", "", "", "", "", "", ""])
   const [questions, setQuestions] = useState([])
