@@ -88,33 +88,42 @@ export default function MathQuestionair() {
   }
   return (
     <div>
-      <Timer />
-      {questions.map((item, key) => (
-        <div key={key} className="flex items-center gap-5">
-          <div className="p-4">
-            {key + 1}.) {item} =
-          </div>
-          <input
-            type="text"
-            value={state[key]}
-            onChange={e =>
-              setState(prev => {
-                const updatedState = [...prev]
-                updatedState[key] = e.target.value
-                return updatedState
-              })
-            }
-            className="rounded-md border-black px-4 border"
-          />
-          <button
-            onClick={() => onVerify(key)}
-            className="bg-green-500 px-4 py-1 text-white hover:bg-green-400 rounded-md"
+      <div className="fixed bg-white top-0 w-full pt-20 md:pt-10 md:left-0">
+        <Timer />
+      </div>
+      <div className="mt-20">
+        {questions.map((item, key) => (
+          <div
+            key={key}
+            className="flex flex-wrap items-center gap-5 p-2 md:gap-8 "
           >
-            Check
-          </button>
-          {ShowValid(key)}
-        </div>
-      ))}
+            <div className="w-full md:w-auto p-2 text-base md:text-lg">
+              {key + 1}.) {item} =
+            </div>
+            <input
+              type="text"
+              value={state[key]}
+              onChange={e =>
+                setState(prev => {
+                  const updatedState = [...prev]
+                  updatedState[key] = e.target.value
+                  return updatedState
+                })
+              }
+              className="w-full md:w-auto rounded-md border border-black px-4 py-2"
+            />
+            <div className="flex items-center w-full md:w-auto gap-8">
+              <button
+                onClick={() => onVerify(key)}
+                className="w-full md:w-auto bg-green-500 px-4 py-2 text-white hover:bg-green-400 rounded-md"
+              >
+                Check
+              </button>
+              <div className="w-full md:w-auto">{ShowValid(key)}</div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
