@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Layout from "./layout/Layout"
 import Home from "./pages/Home"
 import MathQuestionair from "./pages/MathQuestionair"
+import Proportions from "./pages/Proportions"
 
 export default function App() {
   return (
@@ -11,7 +12,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index path="home" element={<Home />} />
-            <Route path="math" element={<MathQuestionair />} />
+            <Route path="math" element={<Proportions />} />
             <Route
               path="*"
               element={
