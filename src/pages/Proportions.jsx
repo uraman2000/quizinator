@@ -65,9 +65,9 @@ export default function Proportions() {
         <div className=" top-0 w-full pt-20 md:pt-10 md:left-0">
           <Timer />
         </div>
-        <div className="flex w-full flex-wrap pb-2">
+        <div className="flex w-full flex-wrap sm:flex-row flex-col pb-2">
           {questions.map((item, key) => (
-            <div key={key} className="mt-6 w-1/2 px-10">
+            <div key={key} className="mt-6 w-full sm:w-1/2 px-10">
               <p className="text-xl">
                 <span>{key + 1}.) </span>
                 {item.question}
